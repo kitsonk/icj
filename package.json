@@ -1,0 +1,69 @@
+{
+  "name": "icj",
+  "version": "0.0.1",
+  "description": "A CLI tool for juggling Istanbul coverage files",
+  "main": "index.js",
+  "bin": {
+    "icj": "./index.js"
+  },
+  "scripts": {
+    "copy": "cpx \"{src,tests}/**/*.{js,html,css,json}\" output && cpx package.json output",
+    "precommit": "lint-staged",
+    "prepare": "tsc -p tsconfig.lib.json",
+    "test": "concurrently --names \"tsc,copy\" \"tsc -p tsconfig.tests.json\" \"npm run copy\" && intern"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitsonk/icj.git"
+  },
+  "author": "Kitson P. Kelly <me@kitsonkelly.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kitsonk/icj/issues"
+  },
+  "homepage": "https://github.com/kitsonk/icj#readme",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "minimatch": "^3.0.4",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "~4.0.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/minimatch": "^3.0.3",
+    "@types/node": "^9.6.0",
+    "@types/sinon": "^4.3.0",
+    "@types/sinon-chai": "^2.7.29",
+    "@types/yargs": "^11.0.0",
+    "chai-as-promised": "^7.1.1",
+    "concurrently": "^3.5.1",
+    "cpx": "^1.5.0",
+    "husky": "0.14.3",
+    "intern": "^4.1.5",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
+    "sinon": "^4.4.9",
+    "sinon-chai": "^3.0.0",
+    "ts-node": "^5.0.1",
+    "tslib": "^1.9.0",
+    "tslint": "^5.9.1",
+    "typescript": "~2.6.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true,
+    "parser": "typescript",
+    "printWidth": 120,
+    "arrowParens": "always"
+  },
+  "yargs": {
+    "parse-numbers": false
+  }
+}
