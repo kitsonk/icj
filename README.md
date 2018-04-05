@@ -1,5 +1,7 @@
 # icj
 
+[![Build Status](https://travis-ci.org/kitsonk/icj.svg?branch=master)](https://travis-ci.org/kitsonk/icj)
+
 An [Istanbul](https://istanbul.js.org/) coverage juggler.  This is a command line tool that allows you to _juggle_ Istanbul coverage files, where for various reasons it is difficult to get the output you desire.
 
 ## Installation
