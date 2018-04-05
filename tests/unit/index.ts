@@ -8,6 +8,7 @@ const packageJson: { version: string } = require('../../package.json');
 
 interface YargsMock {
 	[method: string]: SinonStub;
+	pkgConf: SinonStub;
 	usage: SinonStub;
 	commandDir: SinonStub;
 	demandCommand: SinonStub;
@@ -19,7 +20,7 @@ interface YargsMock {
 }
 
 describe('src/index', () => {
-	const yargsMethods = ['usage', 'commandDir', 'demandCommand', 'version', 'alias', 'help', 'wrap'];
+	const yargsMethods = ['pkgConf', 'usage', 'commandDir', 'demandCommand', 'version', 'alias', 'help', 'wrap'];
 	const yargsMock = {} as YargsMock;
 	const argvStub = stub();
 
@@ -27,7 +28,7 @@ describe('src/index', () => {
 	let yargsStub: SinonStub;
 
 	before(() => {
-		yargsStub = stub(yargs, 'usage').returns(yargsMock);
+		yargsStub = stub(yargs, 'pkgConf').returns(yargsMock);
 
 		yargsMethods.forEach((method) => (yargsMock[method] = stub().returns(yargsMock)));
 		Object.defineProperty(yargsMock, 'argv', {
@@ -47,7 +48,9 @@ describe('src/index', () => {
 
 	it('should operate on yargs properly', async () => {
 		expect(yargsStub).to.have.been.calledOnce;
-		expect(yargsStub).to.have.been.calledWith('usage: $0 <command>');
+		expect(yargsStub).to.have.been.calledWith('icj');
+		expect(yargsMock.usage).to.have.been.calledOnce;
+		expect(yargsMock.usage).to.have.been.calledWith('usage: $0 <command>');
 		expect(yargsMock.commandDir).to.have.been.calledOnce;
 		expect(yargsMock.commandDir).to.have.been.calledWith('commands', {
 			extensions: ['js', 'ts']

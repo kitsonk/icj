@@ -10,6 +10,7 @@ console.log(bold('icj – A juggler for Istanbul coverage files'));
 console.log();
 
 yargs
+	.pkgConf('icj')
 	.usage('usage: $0 <command>')
 	.commandDir('commands', {
 		extensions: ['js', 'ts']
