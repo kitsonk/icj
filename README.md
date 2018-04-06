@@ -27,6 +27,7 @@ icj filter [input] [output]
 It currently supports the following options:
 
 |Option|Value|Description|
+|------|-----|-----------|
 |`-p` or `--pattern`|String|A [minimatch](https://github.com/isaacs/minimatch) glob string of the files to include in the filtered coverage data.  Default value is: `**/webpack:/src/app/**/!(*.spec).ts`|
 
 ## Configuration
